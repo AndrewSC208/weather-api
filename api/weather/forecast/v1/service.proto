@@ -4,27 +4,28 @@ package weather.forecast.v1;
 
 option go_package = "github.com/AndrewSC208/weather-api/api/weather/forecast/v1";
 
+import "validate/validate.proto";
+
 service ForecastService {
     rpc ShortForecast(ShortForecastRequest) returns (ShortForecastResponse);
 }
 
 message ShortForecastRequest {
     // Latitudes should be in the range +/- 90 degrees
-    int32 latitude = 1;
+    float latitude = 1 [(validate.rules).float = {gte: -90, lte: 90}];
     // Longitudes should be in the range +/- 180 degrees
-    int32 longitude = 2;
+    float longitude = 2 [(validate.rules).float = {gte: -180, lte: 180}];
 }
 
 message ShortForecastResponse {
     string short_forecast = 1;
-    ForecastCharacterization characterization = 2;
+    ForecastCharacterization temperature_category = 2;
 }
 
 enum ForecastCharacterization {
+    // It's best practice to have a 0'ith value for enums when using protocol buffers
     INVALID = 0;
-    FREEZING = 1;
-    COLD = 2;
-    MILD = 3;
-    WARM = 4;
-    HOT = 5;
+    COLD = 1;
+    MODERATE = 2;
+    HOT = 3;
 }

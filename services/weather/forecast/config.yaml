@@ -1,0 +1,21 @@
+service:
+  # * draft process name
+  name: forecast
+  # * draft domain name
+  domain: weather
+  # current env (adjusts things like log formatting)
+  # default: local
+  env: local
+
+  logging:
+    # the logging level
+    # default: info
+    level: debug
+
+  network:
+    # the bind address when opening ports for the web server
+    # default: "0.0.0.0"
+    bind_address: "localhost"
+    # the port the process will bind to (if it hosts a web server of any kind)
+    # default: 8090
+    port: 9090
