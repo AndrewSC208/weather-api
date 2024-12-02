@@ -1,0 +1,5 @@
+name: weather-api
+repo: github.com/AndrewSC208/weather-api
+trunk_branch: main
+api:
+  image_name: ghcr.io/steady-bytes/draft-api-builder:main

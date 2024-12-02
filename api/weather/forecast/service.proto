@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package weather.forecast.v1;
+
+option go_package = "github.com/AndrewSC208/weather-api/api/weather/forecast/v1";
+
+service ForecastService {
+    rpc ShortForecast(ShortForecastRequest) returns (ShortForecastResponse);
+}
+
+message ShortForecastRequest {
+    // Latitudes should be in the range +/- 90 degrees
+    int32 latitude = 1;
+    // Longitudes should be in the range +/- 180 degrees
+    int32 longitude = 2;
+}
+
+message ShortForecastResponse {
+    string short_forecast = 1;
+    ForecastCharacterization characterization = 2;
+}
+
+enum ForecastCharacterization {
+    INVALID = 0;
+    FREEZING = 1;
+    COLD = 2;
+    MILD = 3;
+    WARM = 4;
+    HOT = 5;
+}
